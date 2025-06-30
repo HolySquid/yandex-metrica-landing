@@ -47,31 +47,31 @@
   </style>
   <!-- Обработка переходов с добавлением ym_uid -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // 1. Функция получения куки
-      function getCookie(name) {
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Функция получения куки
+    function getCookie(name) {
         const matches = document.cookie.match(
-          new RegExp('(?:^|; )' + name.replace(/([$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)')
+            new RegExp('(?:^|; )' + name.replace(/([$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)')
         );
         return matches ? decodeURIComponent(matches[1]) : undefined;
-      }
+    }
 
-      // 2. Обработчик кликов
-      document.addEventListener('click', function (event) {
+    // 2. Обработчик кликов
+    document.addEventListener('click', function(event) {
         const link = event.target.closest('a');
         if (!link) return;
 
         try {
-          const url = new URL(link.href);
-          if (!url.hostname.includes('paywall.pw')) return;
+            const url = new URL(link.href);
+            if (!url.hostname.includes('paywall.pw')) return;
         } catch (e) {
-          return;
+            return;
         }
 
         const ym_uid = getCookie('_ym_uid');
         if (!ym_uid) {
-          console.warn('ym_uid not found');
-          return;
+            console.warn('ym_uid not found');
+            return;
         }
 
         const url = new URL(link.href);
@@ -79,13 +79,13 @@
         event.preventDefault();
 
         if (link.target === '_blank') {
-          window.open(url.toString(), '_blank');
+            window.open(url.toString(), '_blank');
         } else {
-          location.href = url.toString(); 
+            location.href = url.toString();
         }
-      }, true);
-    });
-  </script>
+    }, true);
+});
+</script>
 </head>
 
 <body>
